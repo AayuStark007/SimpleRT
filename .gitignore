@@ -35,6 +35,6 @@
 dependencies/
 
 # Images
-.png
-.jpg
-.ppm
+*.png
+*.jpg
+*.ppm
