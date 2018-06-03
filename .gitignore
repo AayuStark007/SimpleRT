@@ -33,6 +33,7 @@
 
 # Folders
 dependencies/
+.vscode/
 
 # Images
 *.png
