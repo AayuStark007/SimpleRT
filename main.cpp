@@ -2,9 +2,22 @@
 #include <cctype>
 #include "ray.h"
 
+bool hit_sphere(const vec3& center, float radius, const ray& r){
+	vec3 oc = r.origin() - center;
+	float a = dot(r.direction(), r.direction());
+	float b = 2.0 * dot(oc, r.direction());
+	float c = dot(oc, oc) - radius*radius;
+	float discriminant = b*b - 4*a*c;
+
+	return (discriminant > 0);
+}
+
 vec3 color(const ray& r) {
 	// Linear blending based on y coordinate
 
+	// If we hit the sphere at position (0,0,-1) then we return red color.
+	if (hit_sphere(vec3(0,0,-2), 0.5, r))
+		return vec3(1, 0, 0);
 	// Make it an unit vector so -1.0 < y < 1.0
 	vec3 unit_direction = unit_vector(r.direction());
 	// Scale y to t such that 0.0 < t < 1.0
@@ -15,9 +28,8 @@ vec3 color(const ray& r) {
 }
 
 int main(int argc, char* argv[]) {
-
-	int nx = 1280;
-	int ny = 720;
+	int nx = 200;
+	int ny = 100;
 	if (argc > 2) {
 		nx = atoi(argv[1]);
 		ny = atoi(argv[2]);
