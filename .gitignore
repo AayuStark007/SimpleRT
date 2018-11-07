@@ -34,9 +34,7 @@
 # Folders
 dependencies/
 .vscode/
-outputs/
 
 # Images
 *.png
 *.jpg
-*.ppm
